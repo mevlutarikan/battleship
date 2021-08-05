@@ -13,7 +13,7 @@ $ git clone https://github.com/mevlutarikan/battleship.git
 $ cd battleship/
 ```
 
-### Installing
+## Installing
 
 Install dependecies of Node API server
 
@@ -29,7 +29,7 @@ $ cd reactapp
 $ npm install
 ```
 
-### Executing program
+## Executing program
 
 First start Node API server.
 
@@ -38,20 +38,25 @@ $ cd node-api
 $ npm start
 ```
 
-To start React App in development Server
+To start React App in development server, enter:
 
 ```
 $ cd react
 $ npm start
 ```
 
-Open your browser and go to (http://localhost:30000) or to build app. in reactapp folder
+Open your browser and go to (http://localhost:3000)
+
+To build application, enter command below in reactapp folder:
 
 ```
 $ npm build
 ```
 
-Serve ./reactapp/build folder by any web server. (Nginx, Apache, Node Server etc..)
+Node server serves reactapp/build folder in 8080 port.
+Type (http://localhost:8080) in your browser.
+
+You can also serve ./reactapp/build folder by your web server. (Nginx, Apache etc..)
 
 ## Test
 
