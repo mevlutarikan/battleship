@@ -16,7 +16,7 @@ export function NewGame() {
 
   const newGameClick = () => {
     axios
-      .get(apiURL + '/api/create_game')
+      .get(apiURL + '/api/create_game', { withCredentials: true })
       .then((response) => {
         history.push('setup/' + response.data.gameID);
       })
@@ -27,7 +27,7 @@ export function NewGame() {
 
   useEffect(() => {
     axios
-      .get(apiURL + '/api/getGames')
+      .get(apiURL + '/api/getGames', { withCredentials: true })
       .then((response) => {
         setGames(response.data);
       })
@@ -55,12 +55,14 @@ export function NewGame() {
   return (
     <div>
       <table className="table-primary table-bordered">
-        <tr>
-          <th>Game ID</th>
-          <th>Player ID</th>
-          <th>Join</th>
-        </tr>
-        {renderRows()}
+        <tbody>
+          <tr>
+            <th>Game ID</th>
+            <th>Player ID</th>
+            <th>Join</th>
+          </tr>
+          {renderRows()}
+        </tbody>
       </table>
       <div className="my-5">
         <h5>Or Create A New Game</h5>
