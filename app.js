@@ -10,11 +10,7 @@ var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 
 var app = express();
-app.use(
-  cors({
-    maxAge: 600000,
-  })
-);
+app.use(cors({ credentials: true, maxAge: 600000 }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
