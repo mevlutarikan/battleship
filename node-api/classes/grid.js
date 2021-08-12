@@ -35,11 +35,11 @@ class Grid {
 
     if (direction == 'h') {
       //if ship not fit the area horizantal way throw error
-      if (startLocation.col + ship.lenght - 1 > this.lastColumn) {
+      if (startLocation.col + ship.length - 1 > this.lastColumn) {
         throw new Error(`Ship can not fit horizontally`);
       } else {
         // setup ship horizantal way part by part
-        for (let i = 0; i < ship.lenght; i++) {
+        for (let i = 0; i < ship.length; i++) {
           if (this.area[startLocation.row] && this.area[startLocation.row][startLocation.col + i]) {
             throw new Error('Ships can not be overlapped');
           }
@@ -55,12 +55,12 @@ class Grid {
         return true;
       }
     } else if (direction == 'v')
-      if (startLocation.row + ship.lenght - 1 > this.lastRow) {
+      if (startLocation.row + ship.length - 1 > this.lastRow) {
         //if ship not fit the area vertical way throw error
         throw new Error(`Ship can not fit vertically`);
       } else {
         // setup ship vertical way part by part
-        for (let i = 0; i < ship.lenght; i++) {
+        for (let i = 0; i < ship.length; i++) {
           if (
             this.area[startLocation.row + i] &&
             this.area[startLocation.row + i][startLocation.col]
@@ -89,10 +89,10 @@ class Grid {
    *
    * @param {object} target - row and column number of start coordinates of ship
    * {row:number,colRow:number} row and col are 0 indexed
-   * @result {isHit:boolean, shipSunk{id:num,name:str,lenght:num}
+   * @result {isHit:boolean, shipSunk{id:num,name:str,length:num}
    * isHit - true if shot hit, false if it is miss,
    * shipSunk - if there is not, no ship sunk by this hit,
-   * if there it is, {id:num,name:str,lenght:num} ship is sunk by this shot
+   * if there it is, {id:num,name:str,length:num} ship is sunk by this shot
    */
 
   shooted(target) {
@@ -130,7 +130,7 @@ class Grid {
 
       if (cell.ship.isSunk()) {
         this.fleet.totalSunkShips += 1;
-        resp.shipSunk = { id: cell.ship.shipID, name: cell.ship.name, lenght: cell.ship.lenght };
+        resp.shipSunk = { id: cell.ship.shipID, name: cell.ship.name, length: cell.ship.length };
       } else {
         // there is a ship on target but has hit before
         this.totalMiss += 1;

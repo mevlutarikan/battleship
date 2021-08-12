@@ -7,11 +7,11 @@ const { TestWatcher } = require('jest');
  * test datas
  */
 const shipData = [
-  { id: 0, name: 'Scout', lenght: 2 },
-  { id: 1, name: 'Cruiser', lenght: 3 },
-  { id: 2, name: 'Battleship', lenght: 4 },
-  { id: 3, name: 'Carrier', lenght: 5 },
-  { id: 4, name: 'Aircraft', lenght: 6 },
+  { id: 0, name: 'Scout', length: 2 },
+  { id: 1, name: 'Cruiser', length: 3 },
+  { id: 2, name: 'Battleship', length: 4 },
+  { id: 3, name: 'Carrier', length: 5 },
+  { id: 4, name: 'Aircraft', length: 6 },
 ];
 
 /**
@@ -19,7 +19,7 @@ const shipData = [
  */
 
 describe('ship test', () => {
-  const ship = new Ship(shipData[4].id, shipData[4].name, shipData[4].lenght);
+  const ship = new Ship(shipData[4].id, shipData[4].name, shipData[4].length);
   test('creates instance of ship', () => {
     expect(ship).toBeDefined;
   });
@@ -80,11 +80,11 @@ describe('fleet test', () => {
   });
 
   test('number of ship must be 3 in fleet', () => {
-    ship = new Ship(shipData[1].id, shipData[1].name, shipData[1].lenght);
+    ship = new Ship(shipData[1].id, shipData[1].name, shipData[1].length);
     fleet.addShip(ship);
-    ship = new Ship(shipData[3].id, shipData[3].name, shipData[3].lenght);
+    ship = new Ship(shipData[3].id, shipData[3].name, shipData[3].length);
     fleet.addShip(ship);
-    ship = new Ship(shipData[4].id, shipData[4].name, shipData[4].lenght);
+    ship = new Ship(shipData[4].id, shipData[4].name, shipData[4].length);
     fleet.addShip(ship);
 
     expect(fleet.totalShips).toBe(3);
@@ -100,7 +100,7 @@ describe('Grid test', () => {
   let ship;
 
   for (let i in shipData) {
-    ship = new Ship(shipData[i].id, shipData[i].name, shipData[i].lenght);
+    ship = new Ship(shipData[i].id, shipData[i].name, shipData[i].length);
     fleet.addShip(ship);
   }
   const grid = new Grid(5, 7, fleet);
@@ -150,7 +150,7 @@ describe('Shoot test', () => {
   let ship;
 
   for (let i in shipData) {
-    ship = new Ship(shipData[i].id, shipData[i].name, shipData[i].lenght);
+    ship = new Ship(shipData[i].id, shipData[i].name, shipData[i].length);
     fleet.addShip(ship);
   }
   const grid = new Grid(5, 7, fleet);

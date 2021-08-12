@@ -14,7 +14,7 @@ class Game {
     // add ships to the fleet
     let id = 0;
     config.fleet.forEach((shipName) => {
-      const ship = new Ship(id, shipName, config.shipTypes[shipName].lenght);
+      const ship = new Ship(id, shipName, config.shipTypes[shipName].length);
       fleet.addShip(ship);
       id++;
     });
@@ -28,7 +28,7 @@ class Game {
     fleet = new Fleet();
     // add ships to the fleet
     config.fleet.forEach((shipName) => {
-      const ship = new Ship(shipName, config.shipTypes[shipName].lenght);
+      const ship = new Ship(shipName, config.shipTypes[shipName].length);
       fleet.addShip(ship);
     });
 

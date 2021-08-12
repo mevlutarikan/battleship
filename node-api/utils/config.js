@@ -1,11 +1,11 @@
 const gameList = {};
 module.exports = {
   shipTypes: {
-    Scout: { lenght: 2 },
-    Cruiser: { lenght: 3 },
-    Battleship: { lenght: 4 },
-    Carrier: { lenght: 5 },
-    Aircraft: { lenght: 6 },
+    Scout: { length: 2 },
+    Cruiser: { length: 3 },
+    Battleship: { length: 4 },
+    Carrier: { length: 5 },
+    Aircraft: { length: 6 },
   },
   fleet: ['Aircraft', 'Carrier', 'Battleship', 'Battleship', 'Cruiser', 'Scout', 'Scout'],
   grid: { rows: 6, columns: 8 },

@@ -1,12 +1,12 @@
 class Ship {
-  constructor(shipID, name, lenght) {
+  constructor(shipID, name, length) {
     this.shipID = shipID;
     this.name = name;
-    this.lenght = lenght;
+    this.length = length;
     this.totalHit = 0;
     this.parts = [];
     // part no 0 indexed
-    for (let i = 0; i < lenght; i++) {
+    for (let i = 0; i < length; i++) {
       this.parts[i] = { partNo: i, isDestroyed: false };
     }
   }
@@ -17,7 +17,7 @@ class Ship {
    * @result {boelean} true if hit succesful, or false if it was hit before
    */
   hit(partNo) {
-    if (partNo < 0 || partNo >= this.lenght) return false;
+    if (partNo < 0 || partNo >= this.length) return false;
     if (this.parts[partNo].isDestroyed) return false;
     this.parts[partNo].isDestroyed = true;
     this.totalHit += 1;
@@ -29,7 +29,7 @@ class Ship {
    * @result {boelean} true if ship is sunk
    */
   isSunk() {
-    return this.totalHit == this.lenght;
+    return this.totalHit == this.length;
   }
 
   /**
@@ -46,9 +46,9 @@ class Ship {
    */
   percentageHit() {
     return {
-      percent: `${this.totalHit}/${this.lenght}`,
-      msj: `${this.totalHit}/${this.lenght} of ship is hit. (% ${parseInt(
-        (this.totalHit / this.lenght) * 100
+      percent: `${this.totalHit}/${this.length}`,
+      msj: `${this.totalHit}/${this.length} of ship is hit. (% ${parseInt(
+        (this.totalHit / this.length) * 100
       )}.)`,
     };
   }
