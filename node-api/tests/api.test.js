@@ -5,7 +5,7 @@ describe('api test', () => {
   let cookie;
   test('create_game responds gameID & sesssion', async () => {
     const response = await request(app)
-      .get('/api/create_game')
+      .get('/api/create-game')
       .expect(200)
       .expect('Content-Type', /json/);
     const cookies = response.headers['set-cookie'][0].split(',').map((item) => item.split(';')[0]);
@@ -15,12 +15,12 @@ describe('api test', () => {
   });
 
   test('getgrid responds to 400 without session coockie', async () => {
-    const response = await request(app).get('/api/getgrid').expect(400);
+    const response = await request(app).get('/api/get-grid').expect(400);
   });
 
   test('getgrid api responds to grid json', async () => {
     const response = await request(app)
-      .get('/api/getgrid')
+      .get('/api/get-grid')
       .set('Cookie', cookie)
       .expect(200)
       .expect('Content-Type', /json/);
@@ -33,7 +33,7 @@ describe('api test', () => {
 
   test('setship responds to 400 without session coockie', async () => {
     const response = await request(app)
-      .post('/api/setship')
+      .post('/api/set-ship')
       .set('Accept', 'application/json')
       .send({ shipIndex: 0, location: { row: 2, col: 0 }, direction: 'h' })
       .expect(400);
@@ -41,7 +41,7 @@ describe('api test', () => {
 
   test('setship api responds grid json if success to setup ship', async () => {
     const response = await request(app)
-      .post('/api/setship')
+      .post('/api/set-ship')
       .set('Cookie', cookie)
       .send({ shipIndex: 0, location: { row: 2, col: 0 }, direction: 'h' })
       .expect(200)
@@ -56,7 +56,7 @@ describe('api test', () => {
 
   test('setship api responds 400 & err:... if ships overlaped', async () => {
     const response = await request(app)
-      .post('/api/setship')
+      .post('/api/set-ship')
       .set('Cookie', cookie)
       .send({ shipIndex: 1, location: { row: 0, col: 3 }, direction: 'v' })
       .expect(400)

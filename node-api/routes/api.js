@@ -3,7 +3,7 @@ var router = express.Router();
 const Game = require('../classes/game');
 const { gameList } = require('../utils/config');
 
-router.get('/create_game', function (req, res, next) {
+router.get('/create-game', function (req, res, next) {
   // simple way to create nonsecure short id
   // use npm package "uuid" or "short-uuid" to produce secure unique id
   const gameID = new Date().getTime().toString(36);
@@ -11,10 +11,10 @@ router.get('/create_game', function (req, res, next) {
   req.session.gameID = gameID;
   game.checkInPlayer(req.sessionID);
   gameList[gameID] = game;
-  res.json({ gameID: gameID });
+  res.json({ gameID: gameID, ...game.player[0].grid });
 });
 
-router.get('/join_game/:gameID', function (req, res, next) {
+router.get('/join-game/:gameID', function (req, res, next) {
   if (!gameList[req.params.gameID]) {
     res.status(400).json({ err: `There is no game with a ID of <${req.params.gameID}>` });
     return;
@@ -30,7 +30,7 @@ router.get('/join_game/:gameID', function (req, res, next) {
   }
 });
 
-router.get('/getgrid', function (req, res, next) {
+router.get('/get-grid', function (req, res, next) {
   if (!req.session.gameID && !gameList[req.session.gameID]) {
     res.status(400).json({ err: `No Game Session` });
     return;
@@ -50,7 +50,7 @@ router.get('/getgrid', function (req, res, next) {
  * }
  * response {player.grid}
  */
-router.post('/setShip', function (req, res, next) {
+router.post('/set-ship', function (req, res, next) {
   if (!req.session.gameID && !gameList[req.session.gameID]) {
     res.status(400).json({ err: `No Game Session` });
     return;
@@ -67,11 +67,11 @@ router.post('/setShip', function (req, res, next) {
   }
 });
 
-router.post('/setSockedIDtoSession', function (req, res, next) {
+router.post('/set-socked-id-to-session', function (req, res, next) {
   req.session.socketID = req.body.socketID;
 });
 
-router.get('/getGames', function (req, res, next) {
+router.get('/get-games', function (req, res, next) {
   let response = [];
   Object.keys(gameList).forEach((key) => {
     if (!gameList[key].player[1].sessionID) {

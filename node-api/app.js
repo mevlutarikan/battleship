@@ -10,12 +10,16 @@ var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 
 var app = express();
-app.use(cors({ credentials: true, maxAge: 600000 }));
+app.use(cors({ maxAge: 600000 }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'reactapp', 'build')));
+try {
+  app.use(express.static('../reactapp/build'));
+} catch {
+  app.use(express.static(path.join(__dirname, 'public')));
+}
 
 app.use(
   session({
@@ -28,7 +32,7 @@ app.use(
   })
 );
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/api', apiRouter);
 
 module.exports = app;
